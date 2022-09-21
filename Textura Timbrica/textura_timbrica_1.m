@@ -31,6 +31,7 @@ for i=1:4
 				vec_caract_pf=vec_caract_pf';
         vec_caract_pf=[mean(vec_caract_pf),std(vec_caract_pf)];
         mat_pf(canciones,1:18)=[vec_caract_pf];
+        mat(canciones,1:18)=[vec_caract_pf];
 				long=size(vec_caract_pf)(1);
         filename_bam=sprintf('graficas/pasillo_fiestero/textura_timbrica_pf.csv');
         csvwrite(filename_bam,[mat_pf]);
@@ -45,6 +46,7 @@ for i=1:4
 			vec_caract_pv=vec_caract_pv';
       vec_caract_pv=[mean(vec_caract_pv),std(vec_caract_pv)]
       mat_pv(canciones,1:18)=[vec_caract_pv];
+      mat(canciones+20,1:18)=[vec_caract_pv];
 			long=size(vec_caract_pv)(1);
       filename_pv=sprintf('graficas/pasillo_vocal/textura_timbrica_pv.csv');
       csvwrite(filename_pv,[mat_pv]);
@@ -59,9 +61,10 @@ for i=1:4
 			vec_caract_ot=vec_caract_ot';
       vec_caract_ot=[mean(vec_caract_ot),std(vec_caract_ot)]
       mat_ot(canciones,1:18)=[vec_caract_ot];
+      mat(canciones+28,1:18)=[vec_caract_ot];
 			long=size(vec_caract_ot)(1);
       filename_ot=sprintf('graficas/otros/textura_timbrica_o.csv');
-      csvwrite(filename_jor,[mat_ot]);
+      csvwrite(filename_ot,[mat_ot]);
 			for canc= 1:long
 				printf("%0.10f,",vec_caract_ot(canc,:));
 				printf("%s",char(wav_file(canciones,1)));
@@ -71,4 +74,5 @@ for i=1:4
 		end
 	end
 end
+csvwrite('graficas/vector.csv',[mat]);
 cell2csv('graficas/nombres.csv',[file1;file2;file3]);
